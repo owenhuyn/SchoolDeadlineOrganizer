@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/ActionBar</item>
+    </style>
+
+    <style name="ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">#FF9800</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/actionorange</item>
+
+        <item name="android:actionBarTabStyle">@style/ActionBar.Tab</item>
+    </style>
+
+    <style name="ActionBar.Tab" parent="android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@color/tabcolour</item>
+    </style>
+</resources>
+
