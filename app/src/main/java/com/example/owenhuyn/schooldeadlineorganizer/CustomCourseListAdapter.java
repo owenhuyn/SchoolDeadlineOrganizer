@@ -4,6 +4,7 @@ import java.util.*;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -57,6 +58,17 @@ public class CustomCourseListAdapter extends ArrayAdapter<course> {
         } else {
             holder = (courseHolder) convertView.getTag();
         }
+
+        View.OnClickListener listClickEvent = new View.OnClickListener () {
+            public void onClick(View v) {
+                //put your desired action here
+                //v.callOnClick();
+                Intent intent = new Intent(_context, courseDetail.class);
+                _context.startActivity(intent);
+            }
+        };
+
+        convertView.setOnClickListener(listClickEvent);
 
         // set text here
         holder.circlePicture.setText(Character.toString(_contactList.get(position).name.charAt(0)));

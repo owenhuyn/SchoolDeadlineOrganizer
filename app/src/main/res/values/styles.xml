@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:actionBarStyle">@style/ActionBar</item>
-        <!-- Support library compatibility -->
-        <item name="actionBarStyle">@style/ActionBar</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
+        <!-- Customize your theme here. -->
     </style>
 
-    <style name="ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <style name="ActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:background">#FF9800</item>
         <!-- Support library compatibility -->
         <item name="background">@color/actionorange</item>

@@ -12,7 +12,6 @@ public class course {
     public Examination exam;
     public ArrayList<Test> testList;
 
-
     public course (String n, String c) {
         name = n;
         courseCode = c;
