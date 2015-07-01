@@ -1,6 +1,7 @@
 package com.example.owenhuyn.schooldeadlineorganizer;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  * Use the {@link inboxFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class inboxFragment extends ListFragment {
+public class inboxFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,9 +32,9 @@ public class inboxFragment extends ListFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
     //private OnFragmentInteractionListener mListener;
 
+    View rootView;
     ArrayList<course> courseList;
     ListView courseListView;
     CustomCourseListAdapter adapter;
@@ -67,6 +68,14 @@ public class inboxFragment extends ListFragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.inbox_fragment, container, false);
+        courseListView = (ListView) rootView.findViewById(R.id.courselistview);
+
         courseList = new ArrayList<course>();
 
         // set the com.example.owenhuyn.schooldeadlineorganizer.course list to the view
@@ -76,14 +85,9 @@ public class inboxFragment extends ListFragment {
 
         adapter = new CustomCourseListAdapter (getActivity(), courseList);
 
-        this.setListAdapter(adapter);
-    }
+        courseListView.setAdapter(adapter);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.inbox_fragment, container, false);
-        return v;
+        return rootView;
     }
 /*
     // TODO: Rename method, update argument and hook method into UI event
