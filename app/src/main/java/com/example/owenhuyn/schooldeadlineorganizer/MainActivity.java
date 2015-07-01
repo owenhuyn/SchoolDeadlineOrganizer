@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.support.design.widget.NavigationView;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     DrawerLayout Drawer;
 
+    android.support.v4.app.Fragment fragment;
+    FragmentManager fragmentManager;
     ActionBarDrawerToggle mDrawerToggle;
 
     @Override
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        fragmentManager = this.getSupportFragmentManager();
 
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -81,6 +86,15 @@ public class MainActivity extends AppCompatActivity {
         }; // Drawer Toggle Object Made
         Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
         mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
+
+        // default to first fragment
+        try {
+            fragment = (android.support.v4.app.Fragment)inboxFragment.class.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setTitle("Organizer");
+        fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
     }
 
     @Override
@@ -108,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the planet to show based on
         // position
-        android.support.v4.app.Fragment fragment = null;
+        fragment = null;
 
         Class fragmentClass;
         switch(menuItem.getItemId()) {
@@ -132,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 
         // Highlight the selected item, update the title, and close the drawer

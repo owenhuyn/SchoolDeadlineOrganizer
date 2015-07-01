@@ -5,9 +5,9 @@
 
         <item
             android:id="@+id/inbox"
-            android:checked="false"
+            android:checked="true"
             android:icon="@drawable/ic_action"
-            android:title="Home" />
+            android:title="Organizer" />
 
         <item
             android:id="@+id/calendar"
