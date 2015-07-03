@@ -43,5 +43,7 @@ public class Assignment {
     public Date AssignedDate;
     public Date DueDate;
 
-
+    public Assignment (String Name) {
+        this.name = Name;
+    }
 }
