@@ -5,24 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="7dp">
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        >
+        android:background="@color/white">
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/ColorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            android:elevation="4dp"
+            android:elevation="10dp"
             android:id="@+id/tool_bar"
             android:paddingTop="24dp"/>
         <FrameLayout
             android:id="@+id/frame"
+            android:layout_below="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
         </FrameLayout>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:backgroundTint="?attr/colorPrimary"
+            app:borderWidth="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            android:elevation="10dp"/>
         <!--ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,13 +42,12 @@
             android:layout_marginBottom="8dp"
             android:layout_below="@+id/tool_bar"
             android:id="@+id/courselistview" /-->
-    </LinearLayout>
+    </RelativeLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_height="match_parent"
         android:layout_width="wrap_content"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/drawer_items"
-        />
+        app:menu="@menu/drawer_items"/>
 </android.support.v4.widget.DrawerLayout>
