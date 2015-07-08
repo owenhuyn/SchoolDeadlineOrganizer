@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -61,7 +63,8 @@ public class courseDetail extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collaspeToolbar.setTitle("Course Detail");
-        collaspeToolbar.setBackgroundResource(R.drawable.physics);
+        ImageView collaspseToolbarHeader = (ImageView) findViewById(R.id.header);
+        collaspseToolbarHeader.setBackgroundResource(R.drawable.physics);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.contentList);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -96,11 +99,17 @@ public class courseDetail extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.home) {
+            super.onBackPressed();
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
