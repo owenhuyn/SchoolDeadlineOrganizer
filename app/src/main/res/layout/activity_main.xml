@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             app:backgroundTint="?attr/colorPrimary"
             app:borderWidth="0dp"
-            android:src="@drawable/fab_pen"
+            android:src="@drawable/pencil"
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"

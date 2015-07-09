@@ -63,8 +63,9 @@ public class courseDetail extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         collaspeToolbar.setTitle("Course Detail");
-        ImageView collaspseToolbarHeader = (ImageView) findViewById(R.id.header);
-        collaspseToolbarHeader.setBackgroundResource(R.drawable.physics);
+        collaspeToolbar.setBackgroundResource(R.drawable.physics);
+        /*ImageView collaspseToolbarHeader = (ImageView) findViewById(R.id.header);
+        collaspseToolbarHeader.setBackgroundResource(R.drawable.physics);*/
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.contentList);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
