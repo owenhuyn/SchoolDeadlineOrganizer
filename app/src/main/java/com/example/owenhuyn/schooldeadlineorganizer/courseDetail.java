@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -13,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View.OnClickListener;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -53,6 +56,15 @@ public class courseDetail extends ActionBarActivity {
 
         assignmentList = new ArrayList<Assignment>();
         assignmentList.add(new Assignment("hello"));
+        assignmentList.add(new Assignment("hello1"));
+        assignmentList.add(new Assignment("hello2"));
+        assignmentList.add(new Assignment("hello3"));
+        assignmentList.add(new Assignment("hello4"));
+        assignmentList.add(new Assignment("hello5"));
+        assignmentList.add(new Assignment("hello6"));
+
+
+
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -72,6 +84,15 @@ public class courseDetail extends ActionBarActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new courseDetailRecyclerAdapter(assignmentList));
+
+        FloatingActionButton faButton = (FloatingActionButton) findViewById(R.id.fab);
+        faButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), addAssignmentExam.class);
+                startActivity(intent);
+            }
+        });
         /*// Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setAdapter(mSectionsPagerAdapter);*/
