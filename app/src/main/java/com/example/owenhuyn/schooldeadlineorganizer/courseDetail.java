@@ -106,8 +106,8 @@ public class courseDetail extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_course_detail, menu);
+        // Inflate the menu; this adds items to the action bar if it is present
+        //getMenuInflater().inflate(R.menu.menu_course_detail, menu);
         return true;
     }
 
@@ -121,7 +121,7 @@ public class courseDetail extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        } else if (id == R.id.home) {
+        } else if (id == android.R.id.home) {
             super.onBackPressed();
             return true;
         }

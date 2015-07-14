@@ -13,26 +13,77 @@
         android:elevation="10dp"
         android:id="@+id/tool_bar"
         android:paddingTop="24dp"/>
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/username_text_input_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/username_edit_text"
+        android:layout_height="match_parent"
+        android:id="@+id/submissionForm"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/assignment_name_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"/>
-    </android.support.design.widget.TextInputLayout>
-    <EditText
-        android:id="@+id/edittext1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textSize="18dp" />
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dummy Button"
-        android:textSize="18dp" />
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/assignment_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:hint="Name"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/username_text_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:id="@+id/username_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:maxLength="3"
+                android:textSize="22dp"
+                android:hint="Weight"/>
+        </android.support.design.widget.TextInputLayout>
+        <EditText
+            android:id="@+id/edittext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textSize="18dp" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dummy Button"
+            android:textSize="18dp" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/radio1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Assignment" />
+
+            <RadioButton
+                android:id="@+id/radio2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Exam" />
+        </RadioGroup>
+        <Button
+            android:id="@+id/date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:text="Enter date here"
+            android:bo
+            android:textSize="18dp" />
+    </LinearLayout>
 </LinearLayout>
