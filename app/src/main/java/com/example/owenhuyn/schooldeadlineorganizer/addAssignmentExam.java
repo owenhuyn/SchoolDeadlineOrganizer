@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class addAssignmentExam extends AppCompatActivity {
     private Toolbar toolbar;
+    private Button date_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class addAssignmentExam extends AppCompatActivity {
         //getSupportActionBar().setHomeAsUpIndicator(R.string.SAVE);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle("Add new event");
+
+        date_button = (Button) findViewById(R.id.date_button);
     }
 
     @Override
