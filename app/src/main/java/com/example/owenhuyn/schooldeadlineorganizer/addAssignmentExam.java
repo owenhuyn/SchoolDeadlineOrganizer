@@ -3,6 +3,8 @@ package com.example.owenhuyn.schooldeadlineorganizer;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -58,6 +60,16 @@ public class addAssignmentExam extends AppCompatActivity {
             public void onClick(View v) {
                 DialogFragment newFragment = new TimePickerFragment();
                 newFragment.show(getSupportFragmentManager(), "timePicker");
+            }
+        });
+
+        FloatingActionButton faButton = (FloatingActionButton) findViewById(R.id.fab);
+        faButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do save content here
+
+                onBackPressed();
             }
         });
     }

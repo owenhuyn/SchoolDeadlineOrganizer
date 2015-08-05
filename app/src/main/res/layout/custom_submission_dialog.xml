@@ -1,124 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dialoglayout"
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/ColorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        android:elevation="10dp"
-        android:id="@+id/tool_bar"
-        android:paddingTop="24dp"/>
     <LinearLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
-        android:id="@+id/submissionForm"
         android:orientation="vertical"
-        android:padding="10dp">
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/assignment_name_layout"
+        >
+        <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-            <EditText
-                android:id="@+id/assignment_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22dp"
-                android:hint="Name"/>
-        </android.support.design.widget.TextInputLayout>
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/username_text_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-            <EditText
-                android:id="@+id/username_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:maxLength="3"
-                android:textSize="22dp"
-                android:hint="Weight"/>
-        </android.support.design.widget.TextInputLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type"
-            android:layout_marginTop="10dp"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-            <RadioButton
-                android:id="@+id/radio1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Assignment" />
-            <RadioButton
-                android:id="@+id/radio2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Midterm" />
-            <RadioButton
-                android:id="@+id/radio3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Exam" />
-        </RadioGroup>
+            android:background="@color/ColorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:elevation="10dp"
+            android:id="@+id/tool_bar"
+            android:paddingTop="24dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="10dp">
-            <LinearLayout
-                android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/submissionForm"
+            android:orientation="vertical"
+            android:padding="15dp">
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/assignment_name_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="8">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Date" />
-                <Button
-                    android:id="@+id/date_button"
+                android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/assignment_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter date here"
-                    android:textColor="#000000"
-                    android:background="#ffffff"
-                    android:gravity="left|center_vertical"
-                    android:textSize="18dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
+                    android:textSize="22dp"
+                    android:hint="Name"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/username_text_input_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_weight="2">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Time">
-                </TextView>
-                <Button
-                    android:id="@+id/time_button"
+                android:layout_marginTop="10dp">
+                <EditText
+                    android:id="@+id/username_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0:00"
-                    android:textColor="#000000"
-                    android:background="#ffffff"
-                    android:gravity="left|center_vertical"
-                    android:textSize="18dp" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="3"
+                    android:textSize="22dp"
+                    android:hint="Weight"/>
+            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:layout_marginTop="10dp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Assignment" />
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Midterm" />
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Exam" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="8">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date" />
+                    <Button
+                        android:id="@+id/date_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enter date here"
+                        android:textColor="#000000"
+                        android:background="#ffffff"
+                        android:gravity="left|center_vertical"
+                        android:textSize="18dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time">
+                    </TextView>
+                    <Button
+                        android:id="@+id/time_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0:00"
+                        android:textColor="#000000"
+                        android:background="#ffffff"
+                        android:gravity="left|center_vertical"
+                        android:textSize="18dp" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_plus_white_18dp"
+        app:borderWidth="0dp"
+        android:elevation="10dp"/>
+</RelativeLayout>

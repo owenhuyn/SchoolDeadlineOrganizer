@@ -49,6 +49,8 @@ public class courseDetail extends ActionBarActivity {
     ViewPager mViewPager;
     ArrayList<Assignment> assignmentList;
 
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +81,7 @@ public class courseDetail extends ActionBarActivity {
         /*ImageView collaspseToolbarHeader = (ImageView) findViewById(R.id.header);
         collaspseToolbarHeader.setBackgroundResource(R.drawable.physics);*/
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.contentList);
+        recyclerView = (RecyclerView) findViewById(R.id.contentList);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -103,6 +105,12 @@ public class courseDetail extends ActionBarActivity {
         */
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // when user adds a new assignment or a new test, update the list when they get back
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
