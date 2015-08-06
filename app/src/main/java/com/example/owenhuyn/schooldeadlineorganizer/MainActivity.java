@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.support.design.widget.NavigationView;
@@ -87,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
         Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
         mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
 
+        FloatingActionButton faButton = (FloatingActionButton) findViewById(R.id.fab);
+        faButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAddCourseDialog().show();
+            }
+        });
+
         // default to first fragment
         try {
             fragment = (android.support.v4.app.Fragment)inboxFragment.class.newInstance();
@@ -119,13 +132,36 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public Dialog createAddCourseDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Get the layout inflater
+        LayoutInflater inflater = this.getLayoutInflater();
+
+        // Inflate and set the layout for the dialog
+        // Pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.dialog_add_course, null))
+                // Add action buttons
+                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+        return builder.create();
+    }
+
     public void selectDrawerItem(MenuItem menuItem) {
         // Create a new fragment and specify the planet to show based on
         // position
         fragment = null;
 
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.inbox:
                 fragmentClass = inboxFragment.class;
                 break;
@@ -140,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         try {
-            fragment = (android.support.v4.app.Fragment)fragmentClass.newInstance();
+            fragment = (android.support.v4.app.Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }

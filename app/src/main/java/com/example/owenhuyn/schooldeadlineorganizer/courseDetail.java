@@ -1,5 +1,7 @@
 package com.example.owenhuyn.schooldeadlineorganizer;
 
+import globalVariables.sharedVariables;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -56,14 +58,14 @@ public class courseDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
 
-        assignmentList = new ArrayList<Assignment>();
+        assignmentList = sharedVariables.assignmentArrayList;
         assignmentList.add(new Assignment("hello"));
-        assignmentList.add(new Assignment("hello1"));
+        /*assignmentList.add(new Assignment("hello1"));
         assignmentList.add(new Assignment("hello2"));
         assignmentList.add(new Assignment("hello3"));
         assignmentList.add(new Assignment("hello4"));
         assignmentList.add(new Assignment("hello5"));
-        assignmentList.add(new Assignment("hello6"));
+        assignmentList.add(new Assignment("hello6"));*/
 
 
 

@@ -12,6 +12,7 @@ import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,12 +21,22 @@ import android.widget.DatePicker;
 
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import globalVariables.sharedVariables;
 
 public class addAssignmentExam extends AppCompatActivity {
     private Toolbar toolbar;
+    public EditText nameField;
+    public EditText weightField;
     public static Button date_button;
     public static Button time_button;
     Context mContext;
@@ -48,6 +59,10 @@ public class addAssignmentExam extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle("Add new assignment");
 
+
+        nameField = (EditText) findViewById(R.id.assignment_name);
+        weightField = (EditText) findViewById(R.id.assignment_weight);
+
         date_button = (Button) findViewById(R.id.date_button);
         date_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -67,9 +82,27 @@ public class addAssignmentExam extends AppCompatActivity {
         faButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // do save content here
+                if (!TextUtils.isEmpty(nameField.getText()) && !TextUtils.isEmpty(weightField.getText())) {
+                    // do save content here
 
-                onBackPressed();
+                    Assignment tempAssignment = new Assignment();
+                    SimpleDateFormat tempDate = new SimpleDateFormat("dd-MMM-yyyy");
+
+                    tempAssignment.setName(nameField.getText().toString());
+                    tempAssignment.setAssignedDate(Calendar.getInstance().getTime());
+                    try {
+                        tempAssignment.setDueDate(tempDate.parse(date_button.getText().toString()));
+                    } catch (ParseException e) {
+                        System.out.println("Invalid parse on Due Date");
+                    }
+                    tempAssignment.setWeight(Long.parseLong(weightField.getText().toString()));
+                    //tempAssignment.setWeight(weightField.getText().toString());
+
+                    sharedVariables.assignmentArrayList.add(tempAssignment);
+                    onBackPressed();
+                } else {
+                    sharedVariables.createAlertDialog(addAssignmentExam.this, "Error", "You need to fill out a title, date and deadline.", true, false).show();
+                }
             }
         });
     }

@@ -46,4 +46,5 @@ public class Assignment {
     public Assignment (String Name) {
         this.name = Name;
     }
+    public Assignment () {}
 }
