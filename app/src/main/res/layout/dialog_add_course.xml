@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="Add Course"
             android:textColor="#ffffff"
-            android:fontFamily="sans-serif-bold"
+            android:fontFamily="sans-serif"
             android:textSize="30dp"/>
 
     </LinearLayout>

@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import globalVariables.sharedVariables;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +39,7 @@ public class inboxFragment extends Fragment {
     View rootView;
     ArrayList<course> courseList;
     ListView courseListView;
-    CustomCourseListAdapter adapter;
+    public static CustomCourseListAdapter adapter;
 
     /**
      * Use this factory method to create a new instance of
@@ -76,14 +78,12 @@ public class inboxFragment extends Fragment {
         rootView = inflater.inflate(R.layout.inbox_fragment, container, false);
         courseListView = (ListView) rootView.findViewById(R.id.courselistview);
 
-        courseList = new ArrayList<course>();
+        /*// set the com.example.owenhuyn.schooldeadlineorganizer.course list to the view
+        sharedVariables.courseArrayList.add(new course("Biology", "BIO123"));
+        sharedVariables.courseArrayList.add(new course("Computer Science", "COMPSCI123"));
+        sharedVariables.courseArrayList.add(new course("Phyics", "PHYS3465"));*/
 
-        // set the com.example.owenhuyn.schooldeadlineorganizer.course list to the view
-        courseList.add(new course("Biology", "BIO123"));
-        courseList.add(new course("Computer Science", "COMPSCI123"));
-        courseList.add(new course("Phyics", "PHYS3465"));
-
-        adapter = new CustomCourseListAdapter (getActivity(), courseList);
+        adapter = new CustomCourseListAdapter (getActivity(), sharedVariables.courseArrayList);
 
         courseListView.setAdapter(adapter);
 

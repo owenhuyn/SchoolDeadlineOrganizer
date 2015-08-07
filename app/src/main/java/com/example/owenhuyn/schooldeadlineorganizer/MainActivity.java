@@ -22,9 +22,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -33,12 +35,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import globalVariables.sharedVariables;
+
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     private NavigationView navigationView;
     DrawerLayout Drawer;
+
+    EditText courseNameField;
+    EditText courseCodeField;
+    EditText courseSubject;
+
+    Class fragmentClass;
 
     android.support.v4.app.Fragment fragment;
     FragmentManager fragmentManager;
@@ -53,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         fragmentManager = this.getSupportFragmentManager();
+
+        String testtest = sharedVariables.getPreferences("Hello", "test");
 
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -80,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+
                 // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
                 // open I am not going to put anything here)
             }
@@ -136,15 +151,27 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         // Get the layout inflater
         LayoutInflater inflater = this.getLayoutInflater();
-
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_add_course, null))
+        final View dialogView = inflater.inflate(R.layout.dialog_add_course, null);
+        builder.setView(dialogView)
                 // Add action buttons
                 .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
+                        courseNameField = (EditText) dialogView.findViewById(R.id.course_name);
+                        courseCodeField = (EditText) dialogView.findViewById(R.id.course_code);
+                        courseSubject = (EditText) dialogView.findViewById(R.id.course_subject);
+
+                        if (!TextUtils.isEmpty(courseNameField.getText().toString()) && !TextUtils.isEmpty(courseCodeField.getText().toString())) {
+                            course tempCourse = new course(courseNameField.getText().toString(), courseCodeField.getText().toString());
+                            sharedVariables.courseArrayList.add(tempCourse);
+                            Gson gson = new Gson();
+                            String courseArrayString = gson.toJson(sharedVariables.courseArrayList);
+                            sharedVariables.setPreferences("COURSE", "COURSE_LIST", courseArrayString);
+                            courseArrayString = sharedVariables.getPreferences("COURSE", "COURSE");
+                            inboxFragment.adapter.notifyDataSetChanged();
+                        }
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -160,7 +187,6 @@ public class MainActivity extends AppCompatActivity {
         // position
         fragment = null;
 
-        Class fragmentClass;
         switch (menuItem.getItemId()) {
             case R.id.inbox:
                 fragmentClass = inboxFragment.class;

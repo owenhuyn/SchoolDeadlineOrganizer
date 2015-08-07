@@ -21,6 +21,7 @@
             android:background="@drawable/customcircle"
             android:gravity="center"
             android:text="A"
+            android:textAllCaps="true"
             android:textSize="30sp"
             android:textColor="#ffffff"
             android:fontFamily="sans-serif-light">
