@@ -3,7 +3,9 @@ package com.example.owenhuyn.schooldeadlineorganizer;
 import java.util.*;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.*;
+
+import globalVariables.sharedVariables;
 
 public class CustomCourseListAdapter extends ArrayAdapter<course> {
     private ArrayList<course> _contactList;
@@ -43,7 +47,7 @@ public class CustomCourseListAdapter extends ArrayAdapter<course> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // if the view is null, create one
-
+        final int row_selected = position;
         courseHolder holder;
 
         if (convertView == null) {
@@ -67,8 +71,31 @@ public class CustomCourseListAdapter extends ArrayAdapter<course> {
                 _context.startActivity(intent);
             }
         };
+        View.OnLongClickListener listLongClickEvent = new View.OnLongClickListener () {
+            public boolean onLongClick (View v) {
+                //put your desired action here
+                //v.callOnClick();
+                AlertDialog.Builder error = new AlertDialog.Builder(_context, 0);
+                error.setTitle("Delete?");
+                error.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        sharedVariables.courseArrayList.remove(row_selected);
+                        notifyDataSetChanged();
+                    }
+                });
+                error.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
+                    }
+                });
+                error.show();
+                return true;
+            }
+        };
         convertView.setOnClickListener(listClickEvent);
+        convertView.setOnLongClickListener(listLongClickEvent);
 
         // set text here
         holder.circlePicture.setText(Character.toString(_contactList.get(position).name.charAt(0)));

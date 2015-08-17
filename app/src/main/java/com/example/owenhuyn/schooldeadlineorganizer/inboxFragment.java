@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 import globalVariables.sharedVariables;
@@ -75,6 +78,8 @@ public class inboxFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Gson gson = new Gson();
+        sharedVariables.courseArrayList = gson.fromJson(sharedVariables.getPreferences("COURSE", "COURSE"),  new TypeToken<ArrayList<course>>() {}.getType());
         rootView = inflater.inflate(R.layout.inbox_fragment, container, false);
         courseListView = (ListView) rootView.findViewById(R.id.courselistview);
 

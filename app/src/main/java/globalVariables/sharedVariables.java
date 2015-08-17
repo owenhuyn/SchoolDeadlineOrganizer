@@ -57,18 +57,16 @@ public class sharedVariables extends Application {
     }
 
     public static String getPreferences (String bundle, String name) {
-        final SharedPreferences pref1 = contextOfApplication.getSharedPreferences(bundle, MODE_ENABLE_WRITE_AHEAD_LOGGING);
+        SharedPreferences prefs = contextOfApplication.getSharedPreferences("com.example.owenhuyn.schooldeadlineorganizer", Context.MODE_PRIVATE);
 
-        String text = pref1.getString(bundle, name);
+        String text = prefs.getString("com.example.owenhuyn.schooldeadlineorganizer." + bundle, name);
         return text;
     }
 
     public static void setPreferences (String bundle, String name, String content) {
-        final SharedPreferences pref1 = contextOfApplication.getSharedPreferences(bundle, MODE_ENABLE_WRITE_AHEAD_LOGGING);
+        SharedPreferences prefs = contextOfApplication.getSharedPreferences("com.example.owenhuyn.schooldeadlineorganizer", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor preferenceEditor = pref1.edit();
-        preferenceEditor.putString(name, content);
-        preferenceEditor.commit();
+        prefs.edit().putString("com.example.owenhuyn.schooldeadlineorganizer." + bundle, content).apply();
     }
 
     public String getName() {
