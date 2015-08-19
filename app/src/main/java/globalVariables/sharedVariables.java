@@ -27,6 +27,7 @@ public class sharedVariables extends Application {
     public static String email;
     public static ArrayList<Assignment> assignmentArrayList = new ArrayList<Assignment>();
     public static ArrayList<course> courseArrayList = new ArrayList<course>();
+    public static course activeCourse;
 
     public static Dialog createAlertDialog (Activity activity, String title, String message, boolean yesButton, boolean cancelButton) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);

@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.*;
 
+import com.google.gson.Gson;
+
 import globalVariables.sharedVariables;
 
 public class CustomCourseListAdapter extends ArrayAdapter<course> {
@@ -67,6 +69,8 @@ public class CustomCourseListAdapter extends ArrayAdapter<course> {
             public void onClick(View v) {
                 //put your desired action here
                 //v.callOnClick();
+                // get the active course
+                sharedVariables.activeCourse = sharedVariables.courseArrayList.get(row_selected);
                 Intent intent = new Intent(_context, courseDetail.class);
                 _context.startActivity(intent);
             }
@@ -81,6 +85,10 @@ public class CustomCourseListAdapter extends ArrayAdapter<course> {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         sharedVariables.courseArrayList.remove(row_selected);
+                        Gson gson = new Gson ();
+                        String courseArrayString = gson.toJson(sharedVariables.courseArrayList);
+                        sharedVariables.setPreferences("COURSE", "COURSE_LIST", courseArrayString);
+                        courseArrayString = sharedVariables.getPreferences("COURSE", "COURSE");
                         notifyDataSetChanged();
                     }
                 });

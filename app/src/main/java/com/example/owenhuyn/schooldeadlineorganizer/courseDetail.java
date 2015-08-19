@@ -32,6 +32,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
+
 
 public class courseDetail extends ActionBarActivity {
 
@@ -58,18 +62,18 @@ public class courseDetail extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
 
-        assignmentList = sharedVariables.assignmentArrayList;
-        assignmentList.add(new Assignment("hello"));
-        /*assignmentList.add(new Assignment("hello1"));
-        assignmentList.add(new Assignment("hello2"));
-        assignmentList.add(new Assignment("hello3"));
-        assignmentList.add(new Assignment("hello4"));
-        assignmentList.add(new Assignment("hello5"));
-        assignmentList.add(new Assignment("hello6"));*/
-
-
-
-
+        Gson gson = new Gson();
+        try {
+            sharedVariables.setPreferences("Assignment", "COURSE_", "hello");
+        } catch (JsonSyntaxException j) {
+            System.out.println(j);
+        }
+        try {
+            sharedVariables.assignmentArrayList = gson.fromJson(sharedVariables.getPreferences("ASSIGNMENT", "COURSE_" + sharedVariables.activeCourse.courseCode), new TypeToken<ArrayList<Assignment>>() {
+            }.getType());
+        } catch (JsonSyntaxException j) {
+            System.out.println(j);
+        }
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -87,14 +91,14 @@ public class courseDetail extends ActionBarActivity {
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new courseDetailRecyclerAdapter(assignmentList));
+        recyclerView.setAdapter(new courseDetailRecyclerAdapter(sharedVariables.assignmentArrayList));
 
         FloatingActionButton faButton = (FloatingActionButton) findViewById(R.id.fab);
         faButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), addAssignmentExam.class);
-                startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), addAssignmentExam.class);
+            startActivity(intent);
             }
         });
         /*// Set up the ViewPager with the sections adapter.

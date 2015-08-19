@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -79,7 +80,12 @@ public class inboxFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Gson gson = new Gson();
-        sharedVariables.courseArrayList = gson.fromJson(sharedVariables.getPreferences("COURSE", "COURSE"),  new TypeToken<ArrayList<course>>() {}.getType());
+        try {
+            sharedVariables.courseArrayList = gson.fromJson(sharedVariables.getPreferences("COURSE", "COURSE"), new TypeToken<ArrayList<course>>() {
+            }.getType());
+        } catch (JsonSyntaxException j) {
+            System.out.println(j);
+        }
         rootView = inflater.inflate(R.layout.inbox_fragment, container, false);
         courseListView = (ListView) rootView.findViewById(R.id.courselistview);
 

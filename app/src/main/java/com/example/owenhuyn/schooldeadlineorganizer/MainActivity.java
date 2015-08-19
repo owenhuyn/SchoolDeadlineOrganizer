@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = this.getSupportFragmentManager();
 
-        String testtest = sharedVariables.getPreferences("Hello", "test");
-
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
